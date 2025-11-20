@@ -1,0 +1,15 @@
+[project]
+name = "tinker-self-trainer"
+version = "0.1.0"
+description = "Train a model to act like you using your OpenWebUI chat history"
+readme = "README.md"
+requires-python = ">=3.13"
+authors = [
+    {name = "Moritz Gottschling", email = "gottschling.moritz@gmail.com"}
+]
+dependencies = [
+    "dagster>=1.12.2",
+    "dagster-webserver>=1.12.2",
+    "pandas>=2.3.3",
+    "tinker>=0.4.1",
+]
