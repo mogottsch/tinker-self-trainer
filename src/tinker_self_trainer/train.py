@@ -10,7 +10,7 @@ from typing import Any
 import chz
 import datasets
 import tinker
-from tinker_cookbook import hyperparam_utils
+from tinker_cookbook import hyperparam_utils, model_info
 from tinker_cookbook.display import colorize_example
 from tinker_cookbook.renderers import TrainOnWhat
 from tinker_cookbook.supervised import train as supervised_train
@@ -193,12 +193,13 @@ async def run(args: TrainingArgs):
     lr = get_learning_rate(args.model_name, args.learning_rate)
 
     # Configure Dataset Builder
+    renderer_name = model_info.get_recommended_renderer_name(args.model_name)
     dataset_builder = UserStyleDatasetBuilder(
         data_path=args.data_path,
         test_split=args.test_split,
         common_config=ChatDatasetBuilderCommonConfig(
             model_name_for_tokenizer=args.model_name,
-            renderer_name="llama3",
+            renderer_name=renderer_name,
             max_length=args.max_length,
             batch_size=args.batch_size,
             train_on_what=TrainOnWhat.CUSTOMIZED,
